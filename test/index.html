@@ -32,6 +32,21 @@
 		if ( !QUnit.urlParams.amd ) {
 			loadTests();
 		}
+
+		var failCount = 0;
+		var successCount = 0;
+		var totalCount = 0;
+
+		QUnit.done(function(settings){
+			window.close();
+		});
+
+		QUnit.testDone(function(settings){
+			failCount += settings.failed;
+			successCount += settings.passed;
+			totalCount += settings.total;
+			console.log("[jQuery test] [" + settings.passed + "/" + settings.failed + "/" + settings.total + "] " + settings.name);
+		});
 	</script>
 </head>
 

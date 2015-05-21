@@ -45,12 +45,23 @@
 	}
 
 	// Load jQuery
-	document.write( "<script id='jquery-js' src='" + path + src + "'><\x2Fscript>" );
+	var script = document.createElement("script");
+	script.id = "jquery-js";
+	script.src = path + src;
+	script.async = false;
+	script.defer = false;
+	document.getElementsByTagName("head")[0].appendChild(script);
+	//document.write( "<script id='jquery-js' src='" + path + src + "'><\x2Fscript>" );
 
 	// Synchronous-only tests
 	// Other tests are loaded from the test page
 	if ( typeof loadTests !== "undefined" ) {
-		document.write( "<script src='" + path + "test/unit/ready.js'><\x2Fscript>");
+		var ready_script = document.createElement("script");
+		ready_script.src = path + "test/unit/ready.js";
+		ready_script.async = false;
+		ready_script.defer = false;
+		document.getElementsByTagName("head")[0].appendChild(ready_script);
+		//document.write( "<script src='" + path + "test/unit/ready.js'><\x2Fscript>");
 	}
 
 })();
